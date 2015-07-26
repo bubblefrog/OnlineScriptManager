@@ -105,29 +105,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <iron-pages attr-for-selected="data-route" selected="{{route}}">
 
             <section data-route="sites">
-                  <site-listitem url="http://test.se" loadedjs="12">
-                  </site-listitem>
-                  <site-listitem url="http://test.se" loadedjs="12">
-                  </site-listitem>
-                  <site-listitem url="http://test.se" loadedjs="12">
-                  </site-listitem>
-                  <site-listitem url="http://test.se" loadedjs="12">
-                  </site-listitem>
-                  <site-listitem url="http://test.se" loadedjs="12">
-                  </site-listitem>
+              <firebase-collection
+                      order-by-child="name"
+                      location="https://bubblefrom-osm.firebaseio.com/sites"
+                      data="{{sites}}"></firebase-collection>
+                    <template is="dom-repeat" items="[[sites]]" as="site">
+                       <site-listitem url="[[site.url]]" loadedjs="[[site.scripts.length]]">
+                        </site-listitem>
+                    </template>
               <paper-fab icon="add" style="float:right;" bottom></paper-fab>
 
             </section>
             <section data-route="edit">
               <h2>Basic settings</h2>
               <paper-material elevation="1">
-                <paper-input label="Name"></paper-input>
+                <firebase-collection
+                      order-by-child="name"
+                      location="https://bubblefrom-osm.firebaseio.com/sites/1"
+                      data="{{asd}}"></firebase-collection>
+                <paper-input label="Name" value="{{asd.name}}"></paper-input>
                 <paper-input label="Url"></paper-input>
                 <paper-textarea label="Notes"></paper-textarea>
               </paper-material>
               <h2>Scripts</h2>
-               <site-scriptlistitem url="http://test.se" loadedjs="12">
-               </site-listitem>
+              <firebase-collection
+                      order-by-child="name"
+                      location="https://bubblefrom-osm.firebaseio.com/sites/1/scripts"
+                      data="{{scripts}}"></firebase-collection>
+                    <template is="dom-repeat" items="[[scripts]]" as="script">
+                      <site-scriptlistitem name="[[script.name]]" version="[[script.version]]" checksum="[[script.checksum]]">
+                      </site-listitem>
+                    </template>
               
             </section>
             <section data-route="settings">

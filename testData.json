@@ -1,0 +1,43 @@
+{
+  "sites": [
+    {
+      "scripts": [
+        {
+          "name": "jQuery",
+          "version": "1.2.1",
+          "checksum": "13FC4F33C66A89965C99697B"
+        }
+      ],
+      "name": "test",
+      "url": "http://test.se"
+    },
+    {
+      "scripts": [
+        {
+          "name": "jQuery",
+          "version": "1.2.1",
+          "checksum": "13FC4F33C66A89965C99697B"
+        },
+        {
+          "name": "jQuery",
+          "version": "1.2.1 Test",
+          "checksum": "13FC4F33C66A89965C99697B"
+        }
+      ],
+      "name": "test",
+      "url": "http://test.se"
+    }
+  ],
+  "scripts": [
+    {
+      "name": "jQuery",
+      "version": "1.2.1",
+      "checksum": "13FC4F33C66A89965C99697B"
+    },
+    {
+      "name": "jQuery",
+      "version": "1.2.1 Test",
+      "checksum": "13FC4F33C66A89965C99697B"
+    }
+  ]
+}
