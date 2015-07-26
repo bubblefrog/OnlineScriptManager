@@ -83,10 +83,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </paper-scroll-header-panel>
 
       <!-- Main Area -->
-      <paper-scroll-header-panel main condenses keep-condensed-header>
+      <paper-scroll-header-panel main condesed keep-condensed-header fixed>
 
         <!-- Main Toolbar -->
-        <paper-toolbar id="mainToolbar" class="tall">
+        <paper-toolbar id="mainToolbar" class="small">
           <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
           <span class="flex"></span>
 
@@ -98,12 +98,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="middle middle-container center horizontal layout">
             <div class="app-name">Online script manager</div>
           </div>
-
-          <!-- Application sub title -->
-          <div class="bottom bottom-container center horizontal layout">
-            <div class="bottom-title paper-font-subhead">Manage javascripts with ease</div>
-          </div>
-
         </paper-toolbar>
 
         <!-- Main Content -->
@@ -111,11 +105,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <iron-pages attr-for-selected="data-route" selected="{{route}}">
 
             <section data-route="sites">
-              <paper-material elevation="1">
-              </paper-material>
+                  <site-listitem url="http://test.se" loadedjs="12">
+                  </site-listitem>
+                  <site-listitem url="http://test.se" loadedjs="12">
+                  </site-listitem>
+                  <site-listitem url="http://test.se" loadedjs="12">
+                  </site-listitem>
+                  <site-listitem url="http://test.se" loadedjs="12">
+                  </site-listitem>
+                  <site-listitem url="http://test.se" loadedjs="12">
+                  </site-listitem>
+              <paper-fab icon="add" style="float:right;" bottom></paper-fab>
 
             </section>
-
+            <section data-route="edit">
+              <h2>Basic settings</h2>
+              <paper-material elevation="1">
+                <paper-input label="Name"></paper-input>
+                <paper-input label="Url"></paper-input>
+                <paper-textarea label="Notes"></paper-textarea>
+              </paper-material>
+              <h2>Scripts</h2>
+               <site-scriptlistitem url="http://test.se" loadedjs="12">
+               </site-listitem>
+              
+            </section>
             <section data-route="settings">
               <paper-material elevation="1">
 
