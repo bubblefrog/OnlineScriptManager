@@ -110,8 +110,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       location="https://bubblefrom-osm.firebaseio.com/sites"
                       data="{{sites}}"></firebase-collection>
                     <template is="dom-repeat" items="[[sites]]" as="site">
-                       <site-listitem url="[[site.url]]" loadedjs="[[site.scripts.length]]">
+                      <a data-route="edit" href="/edit">
+                        <site-listitem url="[[site.url]]" loadedjs="[[site.scripts.length]]">
                         </site-listitem>
+                      </a>
                     </template>
               <paper-fab icon="add" style="float:right;" bottom></paper-fab>
 
