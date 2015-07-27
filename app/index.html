@@ -49,6 +49,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <!-- endbuild -->
+  
+  <script src="../bower_components/firebase/firebase.js"></script>
 
   <!-- will be replaced with elements/elements.vulcanized.html -->
   <link rel="import" href="elements/elements.html">
@@ -110,35 +112,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       location="https://bubblefrom-osm.firebaseio.com/sites"
                       data="{{sites}}"></firebase-collection>
                     <template is="dom-repeat" items="[[sites]]" as="site">
-                      <a data-route="edit" href="/edit">
-                        <site-listitem url="[[site.url]]" loadedjs="[[site.scripts.length]]">
+                        <site-listitem site="[[site]]">
                         </site-listitem>
-                      </a>
                     </template>
               <paper-fab icon="add" style="float:right;" bottom></paper-fab>
 
             </section>
             <section data-route="edit">
-              <h2>Basic settings</h2>
-              <paper-material elevation="1">
-                <firebase-collection
-                      order-by-child="name"
-                      location="https://bubblefrom-osm.firebaseio.com/sites/1"
-                      data="{{asd}}"></firebase-collection>
-                <paper-input label="Name" value="{{asd.name}}"></paper-input>
-                <paper-input label="Url"></paper-input>
-                <paper-textarea label="Notes"></paper-textarea>
-              </paper-material>
-              <h2>Scripts</h2>
-              <firebase-collection
-                      order-by-child="name"
-                      location="https://bubblefrom-osm.firebaseio.com/sites/1/scripts"
-                      data="{{scripts}}"></firebase-collection>
-                    <template is="dom-repeat" items="[[scripts]]" as="script">
-                      <site-scriptlistitem name="[[script.name]]" version="[[script.version]]" checksum="[[script.checksum]]">
-                      </site-listitem>
-                    </template>
-              
+              <site-editor name="{{__SE_name}}" url="{{__SE_url}}" notes="{{__SE_notes}}" scripts="{{__SE_scripts}}" qwe="{{params.id}}" id="rty"></site-editor>
             </section>
             <section data-route="settings">
               <paper-material elevation="1">

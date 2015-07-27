@@ -27,17 +27,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   </style>
   <template>
-    
-    <paper-material style="padding:10px;" elevation="1">
-      <paper-ripple></paper-ripple>
-        <paper-item>
-            <paper-item-body two-line>
-              <div>{{url}}</div>
-              <div secondary><span>{{loadedjs}}</span> loaded Javascripts</div>
-            </paper-item-body>
-            <iron-icon icon="warning"></iron-icon>
-        </paper-item>
-    </paper-material>
+    <a id="link" data-route="edit" href="{{editUrl}}">
+      <paper-material style="padding:10px;" elevation="1">
+          <paper-item>
+              <paper-item-body two-line>
+                <div>{{site.url}}</div>
+                <div secondary><span>0</span> loaded Javascripts</div>
+              </paper-item-body>
+              <iron-icon icon="warning"></iron-icon>
+          </paper-item>
+      </paper-material>
+    </a>
   </template>
   <script>
   (function() {
@@ -45,6 +45,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'site-listitem',
 
       properties: {
+        site:{
+          type: Object,
+          value: null,
+          observer: '_siteChanged'
+        },
         name: {
           type: String,
           value: 'test.se'
@@ -56,7 +61,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         loadedjs: {
           type: String,
           value: "0"
+        },
+        editUrl: {
+          type: String,
+          value: "/edits"
         }
+      },
+      _siteChanged : function(){
+        this.editUrl = "/edit/" + this.site.__firebaseKey__;
       }
     });
   })();

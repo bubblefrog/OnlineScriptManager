@@ -1,0 +1,107 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+
+
+
+
+
+      <firebase-collection
+                      order-by-child="name"
+                      location="https://bubblefrom-osm.firebaseio.com/sites/1/scripts"
+                      data="{{scripts}}"></firebase-collection>
+                    <template is="dom-repeat" items="[[scripts]]" as="script">
+                      <site-scriptlistitem name="[[script.name]]" version="[[script.version]]" checksum="[[script.checksum]]">
+                      </site-listitem>
+                    </template>
+-->
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<script src="..\..\bower_components/firebase/firebase.js" ></script>
+<dom-module id="site-editor">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <template>
+    <h2>Basic settings</h2>
+              <paper-material elevation="1" style="padding:20px;">
+                  <paper-input label="Name" value="{{name}}"></paper-input>
+                  <paper-input label="Url" value="{{url}}"></paper-input>
+                  <paper-textarea label="Notes" value="{{notes}}"></paper-textarea>
+              </paper-material>
+    <h2>Scripts</h2>
+    <template is="dom-repeat" items="{{scripts}}" as="script">
+      <paper-material style="padding:10px;" elevation="1">
+         <paper-item>
+           <paper-item-body two-line>
+              <div>{{script.name}}</div>
+            <div secondary><span>0</span> loaded Javascripts</div>
+          </paper-item-body>
+         <iron-icon icon="warning"></iron-icon>
+        </paper-item>
+      </paper-material>
+    </template>
+              
+  </template>
+  <script>
+  (function() {
+    Polymer({
+      is: 'site-editor',
+
+      properties: {
+        qwe: {
+          type: String,
+          value: '',
+          notify: true,
+          observer: '_onIdChange'
+          
+        },
+        name: {
+          type: String,
+          value: '',
+          notify: true
+        },
+        url: {
+          type: String,
+          value: ''
+        },
+        notes: {
+          type: String,
+          value: ''
+        },
+        scripts: {
+          type: Object,
+          value: null
+        }
+      },
+      _onIdChange: function(){
+       if (this.qwe != ''){
+         app.__SE_name=""
+         app.__SE_url=""
+         app.__SE_notes=""
+         app.__SE_scripts=""
+          var refa = new Firebase("https://bubblefrom-osm.firebaseio.com/sites/" + this.qwe);
+          console.log (this.qwe);
+          // Retrieve new posts as they are added to our database
+          refa.on("value", function(snapshot) {
+            var newPost = snapshot.val();
+            console.log(newPost);
+             app.__SE_name = newPost.name;
+              app.__SE_url = newPost.url;
+              app.__SE_notes = newPost.notes;
+              app.__SE_scripts = newPost.scripts;
+          });
+        }
+      }
+
+    });
+  })();
+  </script>
+</dom-module>

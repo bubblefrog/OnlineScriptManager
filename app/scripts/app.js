@@ -62,5 +62,41 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       drawerPanel.closeDrawer();
     }
   };
+  
+  
+  
+  
+  
+ app.addSite =  function (_name, _url){
+   var ref = new Firebase("https://bubblefrom-osm.firebaseio.com/");
+    var sitesRef = ref.child("sites");
+    sitesRef.push(
+    {
+      url:_url,
+      name: _name
+    });
+  }
+  
+  app.debug = function(){
+     var ref = new Firebase("https://bubblefrom-osm.firebaseio.com/");
+     var sitesRef = ref.child("sites");
+     console.log(sitesRef.key());
+  }
+   app.addScriptToSite =  function (site,script){
+   var ref = new Firebase("https://bubblefrom-osm.firebaseio.com/");
+   var sitesRef = ref.child("sites");
+   var siteRef = sitesRef.child("-JvFWl8cnid-ks10MDh3"); 
+   var scriptsRef = siteRef.child("scripts") 
+    scriptsRef.push(script);
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
 })(document);
